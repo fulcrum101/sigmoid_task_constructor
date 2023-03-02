@@ -12,6 +12,7 @@ export default  function Navbar() {
                     <div className="collapse navbar-collapse justify-content-end" id="Navbar">
                         <div className="navbar-nav">
                             <a className="nav-link" href="/my_tasks">My tasks</a>
+                            {/* TODO Align text in button */}
                             <a className="btn btn-sm btn-outline-secondary" type="button" aria-pressed="true" href="/new_task">New task</a>
                         </div>
                     </div>

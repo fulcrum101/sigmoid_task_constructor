@@ -1,0 +1,11 @@
+code = "hello"
+            name = "greetings"
+            version = 0
+    
+            author = ""
+            tags = []
+    
+            type = "simple"
+            time_lim= 1000
+            mem_lim = 256
+          

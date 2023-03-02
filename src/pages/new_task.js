@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import {redirect} from "next/navigation";
 
 export default function New_task() {
     const [validated, setValidated] = useState(false);
 
     const [codename, setCodename] = useState("");
+    const [codenameCheck, setCodenameCheck] = useState(true);
     const[name, setName] = useState("");
     const [tcheck, setTcheck] = useState(false);
 
@@ -16,7 +18,6 @@ export default function New_task() {
             event.preventDefault();
             event.stopPropagation();
         }
-
         event.preventDefault();
         const postData = async() => {
             const data = {
@@ -31,11 +32,29 @@ export default function New_task() {
             return response.json();
         };
         postData().then((data) => {
-            // success
-        });
-
+            // TODO redirect to '/edit_task' with props
+            // redirect('/edit_task');
+       });
         setValidated(true);
-    }
+    };
+
+    const handleCodenameCheck = (e) => {
+        // TODO Handle form validation properly
+        setCodename(e);
+        let res = true;
+        const handleCodename = async () => {
+            const data = {codename: codename};
+            const response = await fetch("/api/new_task_codename", {
+                method: "POST",
+                body: JSON.stringify(data)
+            });
+            return response.json();
+        };
+        handleCodename().then((data)=>{
+            setCodenameCheck(data.check);
+        });
+    };
+
     return (
         <div className="container-fluid">
             <h3>New task</h3>
@@ -45,7 +64,13 @@ export default function New_task() {
                     <Form.Control required
                                   type="text"
                                   placeholder="hello_world"
-                                  onChange={(e)=> setCodename(e.target.value)}/>
+                                  isInvalid={!codenameCheck}
+                                  onChange={(e)=> {
+                                      handleCodenameCheck(e.target.value)
+                                  }}/>
+                    <Form.Control.Feedback type="invalid" tooltip>
+                        Problem with that codename already exists.
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Row} className="mb-3 w-25" controlId="form.task_name">
                     <Form.Label>Task name</Form.Label>

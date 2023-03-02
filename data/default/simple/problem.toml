@@ -1,0 +1,10 @@
+code = ""
+name = ""
+version = 0
+
+author = ""
+tags = []
+
+type = "batch"
+time_lim= 1000
+mem_lim = 256
