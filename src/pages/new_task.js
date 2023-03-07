@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import {redirect} from "next/navigation";
+import {useRouter} from "next/router";
+
+import Container from "react-bootstrap/Container";
 
 export default function New_task() {
     const [validated, setValidated] = useState(false);
@@ -12,6 +14,7 @@ export default function New_task() {
     const[name, setName] = useState("");
     const [tcheck, setTcheck] = useState(false);
 
+    const router = useRouter()
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -31,9 +34,8 @@ export default function New_task() {
             });
             return response.json();
         };
-        postData().then((data) => {
-            // TODO redirect to '/edit_task' with props
-            // redirect('/edit_task');
+        postData().then(() => {
+            router.push('/edit_task/'+codename);
        });
         setValidated(true);
     };
@@ -41,7 +43,6 @@ export default function New_task() {
     const handleCodenameCheck = (e) => {
         // TODO Handle form validation properly
         setCodename(e);
-        let res = true;
         const handleCodename = async () => {
             const data = {codename: codename};
             const response = await fetch("/api/new_task_codename", {
@@ -56,8 +57,9 @@ export default function New_task() {
     };
 
     return (
-        <div className="container-fluid">
-            <h3>New task</h3>
+        <Container fluid>
+            <br/>
+            <h5>New task</h5>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group as={Row} className="mb-3 w-25" controlId="form.task_codename">
                     <Form.Label>Task codename</Form.Label>
@@ -87,9 +89,8 @@ export default function New_task() {
                     onChange={(e) => setTcheck(!tcheck)}
                 />
                 </Form.Group>
-                <br/>
                 <Button variant="outline-primary" type="submit">Create</Button>
             </Form>
-        </div>
+        </Container>
     );
 }

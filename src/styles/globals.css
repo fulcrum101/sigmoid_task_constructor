@@ -1,0 +1,7 @@
+.color-nav{
+    background-color:  rgb(207, 226, 255);
+    box-shadow: 1px 1px;
+}
+* {
+    font-family: 'Roboto Mono', monospace;
+}

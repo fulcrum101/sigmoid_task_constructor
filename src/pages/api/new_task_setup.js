@@ -10,16 +10,6 @@ export default async function handler(req, res) {
     const fs = require('fs');
     // TODO Proper error handling editing problem.toml
     fs.writeFileSync(dir_path + '/problem.toml',
-        `code = "${codename}"
-            name = "${name}"
-            version = 0
-    
-            author = ""
-            tags = []
-    
-            type = "${simple_type ? 'simple' : 'batch'}"
-            time_lim= 1000
-            mem_lim = 256
-          `)
+        `code = "${codename}"\nname = "${name}"\nversion = 0\n\nauthor = ""\ntags = []\n\ntype = "${simple_type ? 'simple' : 'batch'}"\ntime_lim = 1000\nmem_lim = 256`)
     return res.status(200).json({path: dir_path});
 }

@@ -15,6 +15,7 @@ export default function My_task() {
     }, []);
     return (
         <div className="container-fluid">
+            <br/>
             <h5>My tasks</h5>
             <Table bordered hover>
                 <thead className="table-primary">
@@ -31,7 +32,7 @@ export default function My_task() {
                         <td>{task.last_modified.split("T")[0]} {task.last_modified.split("T")[1].split(".")[0]}</td>
                         <td>
                             {/* TODO Link properly to edit task with props*/}
-                            <Link href={{pathname: 'edit_task', query: {codename: task.codename}}} legacyBehavior>
+                            <Link href={"/edit_task/" + task.codename}>
                                 <Button variant="outline-primary">
                                     edit task
                                 </Button>

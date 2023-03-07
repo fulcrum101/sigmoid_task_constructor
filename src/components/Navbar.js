@@ -1,23 +1,28 @@
 import Link from 'next/link'
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-export default  function Navbar() {
+export default  function My_navbar() {
     return (
-        <div>
-            <nav className="navbar navbar-expand-md bg-light">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Sigmoid task constructor</a>
-                    <button className="navbar-toggler" type="button" data-bs-target="#Navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse justify-content-end" id="Navbar">
-                        <div className="navbar-nav">
-                            <a className="nav-link" href="/my_tasks">My tasks</a>
-                            {/* TODO Align text in button */}
-                            <a className="btn btn-sm btn-outline-secondary" type="button" aria-pressed="true" href="/new_task">New task</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    )
+        <>
+            <Navbar className="color-nav">
+                <Container fluid>
+                    <Navbar.Brand>Sigmoid task constructor</Navbar.Brand>
+                    <Nav className="ms-auto text-center" >
+                        <Nav.Link href="/my_tasks">My tasks</Nav.Link>
+                    </Nav>
+                    <Form className="d-flex">
+                        <Link href="/new_task">
+                            <Button variant="outline-dark">New task</Button>
+                        </Link>
+                    </Form>
+
+                </Container>
+            </Navbar>
+        </>
+    );
+
 }

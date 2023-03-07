@@ -1,0 +1,10 @@
+code = "test_1_simple"
+name = "hello world"
+version = 0
+
+author = "fulcrum"
+tags = ["test","problemcon","simple"]
+
+type = "simple"
+time_lim= 999
+mem_lim = 256
